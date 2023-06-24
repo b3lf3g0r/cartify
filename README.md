@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Oxide-Commerce</h1>
+  <img src="https://github.com/b3lf3g0r/oxide-commerce/assets/80452137/356ead16-99f0-451a-90b2-87c133838aaa" height="250" />
   <p>
     Oxide-Commerce REST API, the definitive solution for effortlessly developing and managing your e-commerce applications.
   </p>
