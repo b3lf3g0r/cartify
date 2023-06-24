@@ -1,0 +1,17 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Oxide Commerce API",
+        "license": {
+            "name": "ISC"
+        },
+        "description": "An e-commerce API that handles catalog, cart and wishlist."
+    },
+    "host": "http://127.0.0.1:5500",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/v1",
+    "paths": {}
+}
