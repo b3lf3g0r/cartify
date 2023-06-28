@@ -1,2 +1,4 @@
 node_modules
 .env
+src/config/oxide-commerce.crt
+src/config/oxide-commerce.key

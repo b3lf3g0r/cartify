@@ -14,6 +14,8 @@ import helmet from 'helmet';
 import * as swaggerUi from 'swagger-ui-express';
 import { createRequire } from 'module';
 
+import { ProductRoutes } from './routes/routes';
+
 const require = createRequire(import.meta.url);
 const swaggerDoc: any = require('../swagger.json');
 
@@ -36,5 +38,6 @@ app.use(express.json());
 app.use(helmet());
 
 app.use('/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/v1/product', new ProductRoutes().getRouter());
 
 export { app };
