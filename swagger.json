@@ -1,17 +1,215 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Oxide Commerce API",
-        "license": {
-            "name": "ISC"
-        },
-        "description": "An e-commerce API that handles catalog, cart and wishlist."
-    },
-    "host": "http://127.0.0.1:5500",
-    "schemes": [
-        "https"
+ "swagger": "2.0",
+ "info": {
+  "version": "1.0.0",
+  "title": "Oxide Commerce API",
+  "license": {
+   "name": "BSD 3-Clause"
+  },
+  "description": "An e-commerce API that handles catalog, cart, and wishlist."
+ },
+ "host": "http://127.0.0.1:5500",
+ "schemes": ["https"],
+ "basePath": "/v1",
+ "paths": {
+  "/product": {
+   "post": {
+    "tags": ["Product"],
+    "summary": "Create a new product",
+    "description": "Endpoint to create a new product",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [
+     {
+      "in": "body",
+      "name": "body",
+      "description": "Product object",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/Product"
+      }
+     }
     ],
-    "basePath": "/v1",
-    "paths": {}
+    "responses": {
+     "200": {
+      "description": "Product created successfully"
+     }
+    }
+   },
+   "get": {
+    "tags": ["Product"],
+    "summary": "Get products by brand",
+    "description": "Endpoint to retrieve products by brand",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "brand",
+      "description": "Brand of the product",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Products retrieved successfully"
+     }
+    }
+   }
+  },
+  "/product/{productId}": {
+   "get": {
+    "tags": ["Product"],
+    "summary": "Get product details",
+    "description": "Endpoint to retrieve product details",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "productId",
+      "description": "ID of the product",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Product details retrieved successfully"
+     }
+    }
+   },
+   "put": {
+    "tags": ["Product"],
+    "summary": "Update product details",
+    "description": "Endpoint to update product details",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "productId",
+      "description": "ID of the product",
+      "required": true,
+      "type": "string"
+     },
+     {
+      "in": "body",
+      "name": "body",
+      "description": "Updated product object",
+      "required": true,
+      "schema": {
+       "$ref": "#/definitions/ProductUpdate"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Product details updated successfully"
+     }
+    }
+   },
+   "delete": {
+    "tags": ["Product"],
+    "summary": "Delete a product",
+    "description": "Endpoint to delete a product",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "productId",
+      "description": "ID of the product",
+      "required": true,
+      "type": "string"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Product deleted successfully"
+     }
+    }
+   }
+  }
+ },
+ "definitions": {
+  "Product": {
+   "type": "object",
+   "properties": {
+    "name": {
+     "type": "string"
+    },
+    "brand": {
+     "type": "string"
+    },
+    "desc": {
+     "type": "string"
+    },
+    "images": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "colors": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "sizes": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "price": {
+     "$ref": "#/definitions/Price"
+    },
+    "quantity": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "sku": {
+     "type": "string"
+    },
+    "categories": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "name",
+    "brand",
+    "desc",
+    "images",
+    "colors",
+    "sizes",
+    "price",
+    "quantity",
+    "sku",
+    "categories"
+   ]
+  },
+  "Price": {
+   "type": "object",
+   "properties": {
+    "raw": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "formatted": {
+     "type": "string"
+    },
+    "formatted_with_currency": {
+     "type": "string"
+    }
+   },
+   "required": ["raw", "formatted", "formatted_with_currency"]
+  },
+  "ProductUpdate": {
+   "type": "object",
+   "properties": {
+    "desc": {
+     "type": "string"
+    }
+   },
+   "required": ["desc"]
+  }
+ }
 }
